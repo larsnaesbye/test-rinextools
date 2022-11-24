@@ -1,4 +1,4 @@
-FROM debian:11-slim as builder
+FROM debian:stable-slim as builder
 
 ARG TEQC_URL=https://www.unavco.org/software/data-processing/teqc/development/teqc_CentOSLx86_64s.zip
 ARG GFZRNX_URL=http://semisys.gfz-potsdam.de/semisys/software/gfzrnx/1.13/gfzrnx_lx
@@ -33,6 +33,8 @@ RUN apt-get update && apt-get install -y \
     (cd RTKLIB-${RTKLIB_EXPLORER_TAG}/app/consapp/str2str/gcc/; make -j 16; make install) && \
     rm -rf RTKLIB-${RTKLIB_EXPLORER_TAG}
     
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+RUN  /root/.cargo/bin/cargo install rinex-cli
 
 FROM debian:11-slim as debian
 
@@ -40,7 +42,7 @@ RUN apt-get update && apt-get install -y csh gfortran && \
      rm -rf /var/lib/apt/lists/*
 
 COPY --from=builder /usr/local/bin/* /usr/local/bin/
-
+COPY --from=builder /root/.cargo/bin/rinex-cli /usr/local/bin/
 
 FROM python:3.9-slim-bullseye as python
 
@@ -48,6 +50,7 @@ RUN apt-get update && apt-get install -y csh gfortran && \
      rm -rf /var/lib/apt/lists/*
 
 COPY --from=builder /usr/local/bin/* /usr/local/bin/
+COPY --from=builder /root/.cargo/bin/rinex-cli /usr/local/bin/
 
-ENTRYPOINT ["/bin/sh"] 
+ENTRYPOINT ["/bin/bash"] 
 
