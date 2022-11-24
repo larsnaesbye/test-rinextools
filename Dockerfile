@@ -22,7 +22,7 @@ RUN apt-get update && apt-get install -y \
         bzip2  && \
     rm -rf /var/lib/apt/lists/* && \
     unzip teqc_CentOSLx86_64s.zip -d /usr/local/bin && rm -rf teqc_CentOSLx86_64s.zip && \
-    cp gfzrnx_lx /usr/local/bin/gfzrnx_lx && chmod ugo+x /usr/local/bin/gfzrnx_lx && \
+    cp gfzrnx_2.0-8219_lx64 /usr/local/bin/gfzrnx_lx && chmod ugo+x /usr/local/bin/gfzrnx_lx && \
     tar xvfz RNXCMP_4.1.0_Linux_x86_64bit.tar.gz && mv RNXCMP_*/bin/* /usr/local/bin && rm -rf RNXCMP_* && \ 
     unzip rtklib-${RTKLIB_EXPLORER_TAG}.zip && \
     (cd RTKLIB-${RTKLIB_EXPLORER_TAG}/lib/iers/gcc/; make -j 16)  && \
