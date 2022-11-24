@@ -10,9 +10,9 @@ Traditional suites and processes:
 * QC : `bnc` or `anubis`
 * splice/merge : `gfzrnx` or `bnc`
 * Compress Hatanaka : `RNX2CRX`
-* Compress : `gzip`
-* 
-Can we possibly replace this with:
+* Compress : `gzip` 
+
+Can we possibly replace this with the [`rinex`](https://github.com/gwbres/rinex)-based rinex-cli?
 
 * Decompress GZIP : `rinex` (`flate2`)
 * Decompress Hatanaka (CRX) : `rinex`
