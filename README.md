@@ -1,7 +1,7 @@
 # test-rinextools
-Docker setup for testing RINEX tools
+Docker setup for testing RINEX tools for GORM 2.0
 
-Traditional suite:
+Traditional suites and processes:
 
 * Decompress GZIP : `gzip`
 * Decompress Hatanaka (CRX) : `CRX2RNX`
@@ -12,7 +12,7 @@ Traditional suite:
 * Compress Hatanaka : `RNX2CRX`
 * Compress : `gzip`
 * 
-Can we replace this with:
+Can we possibly replace this with:
 
 * Decompress GZIP : `rinex` (`flate2`)
 * Decompress Hatanaka (CRX) : `rinex`
