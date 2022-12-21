@@ -13,6 +13,8 @@ COPY external .
 
 RUN apt-get update && apt-get install -y \
         bash \
+        libfontconfig \
+        libfontconfig1-dev \
         build-essential  \
         gcc \
         git \
